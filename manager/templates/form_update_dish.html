@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <section id="book-a-table" class="book-a-table">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Update a <span>Dish</span></h2>
+        </div>
+
+        <form method="post" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-4 col-md-6 form-group"
+                <p><b>Category:</b> </p>
+                <select name="category" id="category">
+                    {% for item in category %}
+                        {% if item == dish.category %}
+                        <option value="{{ item }}" selected>{{ item }}</option>
+                        {% else %}
+                        <option value="{{ item }}">{{ item }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <p><b>Title:</b> </p>
+              <input type="text" name="title" class="form-control" id="title" placeholder="Title" data-rule="minlen:4" data-msg="Please enter at least 4 chars" value="{{ dish.title }}">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <p><b>Ingredients:</b> </p>
+              <input type="text" name="ingredients" class="form-control" id="ingredients" placeholder="Ingredients" data-rule="minlen:4" data-msg="Please enter at least 4 chars" value="{{ dish.ingredients }}">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3">
+                <p><b>Price:</b> </p>
+              <input type="number" step="0.01" name="price" id="price" placeholder="Price" value="{{ dish.price }}">
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3">
+                <p><b>Image:</b> </p>
+              <input type="file" name="image" id="image">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3">
+                <p><b>Description:</b> </p>
+              <input type="text" class="form-control" name="description" placeholder="Description" value="{{ dish.description }}">
+              <div class="validate"></div>
+            </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                  <p><b>Dish order:</b> </p>
+              <input type="number" class="form-control" name="dish_order" id="dish_order" placeholder="Dish order" data-rule="minlen:1" data-msg="Please enter at least 1 chars" value="{{ dish.dish_order }}">
+              <div class="validate"></div>
+            </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                  <p>Is visibility: </p>
+                  <input type="checkbox" name="is_visibility" id="is_visibility" checked value="True"> <p>Yes</p>
+                  <input type="checkbox" name="is_visibility" id="is_visibility" value="No"> <p>No</p>
+
+              <div class="validate"></div>
+              </div>
+                  <div class="col-lg-4 col-md-6 form-group mt-3">
+                      <p>Is special: </p>
+                      {% if not dish.is_special %}
+                          <input type="checkbox" name="is_special" id="is_special" value="True"> <p>Yes</p>
+                          <input type="checkbox" name="is_special" id="is_special" value="False" checked> <p>No</p>
+                      {% else %}
+                          <input type="checkbox" name="is_special" id="is_special" value="True"checked> <p>Yes</p>
+                          <input type="checkbox" name="is_special" id="is_special" value="False"> <p>No</p>
+                      {% endif %}
+                  </div>
+          </div>
+          <div class="text-center"><button type="submit">Update dish</button></div>
+        </form>
+
+      </div>
+
+    </section><!-- End Add A Dish Section -->
+        <div class="section-title">
+          <a href="{% url 'delete_dish' pk=dish.pk %}">
+              <button type="button" class="btn btn-primary btn-sm">Удалить блюдо</button>
+          </a>
+        </div>
+{% endblock %}

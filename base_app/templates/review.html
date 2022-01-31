@@ -1,0 +1,42 @@
+{% load template_tags %}
+<!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container position-relative">
+
+        <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+            {% for review in reviews %}
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{{ review.image.url }}" class="testimonial-img" alt="">
+                <h3>{{ review.name }}</h3>
+                <h4>{{ review.post }}</h4>
+                <div class="stars">
+                    {% for star in review.rating|range%}
+                  <i class="bi bi-star-fill"></i>
+                    {% endfor %}
+                </div>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  {{ review.review }}
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+          <div class="section-title">
+              <a href="{% url 'base_app:add_review' %}">
+                  <button type="button" class="btn btn-primary btn-sm">Оставить отзыв</button>
+              </a>
+          </div>
+      </div>
+
+
+      </div>
+    </section><!-- End Testimonials Section -->

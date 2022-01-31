@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <section id="book-a-table" class="book-a-table">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Add a <span>Category</span></h2>
+        </div>
+
+        <form method="post" role="form">
+            {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-4 col-md-6 form-group">
+                <p>Name: </p>{{ form_category.name }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+              <p>Position: </p>{{ form_category.position }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+              <p>Is visibility: </p>{{ form_category.is_visibility }}
+              <div class="validate"></div>
+            </div>
+
+          </div>
+          <div class="text-center"><button type="submit">Add Category</button></div>
+        </form>
+
+      </div>
+    </section><!-- End Add A Category Section -->
+{% endblock %}

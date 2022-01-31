@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <section id="book-a-table" class="book-a-table">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Add a <span>Dish</span></h2>
+        </div>
+
+        <form method="post" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-4 col-md-6 form-group">
+              {{ form_dish.category }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+              {{ form_dish.title }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+              {{ form_dish.ingredients }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3">
+              {{ form_dish.price }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3">
+              {{ form_dish.description }}
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3">
+              {{ form_dish.dish_order }}
+              <div class="validate"></div>
+            </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+              {{ form_dish.image }}
+              <div class="validate"></div>
+            </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                  <p>Is visibility: </p>{{ form_dish.is_visibility }}
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="text-center"><button type="submit">Add Dish</button></div>
+        </form>
+
+      </div>
+    </section><!-- End Add A Dish Section -->
+{% endblock %}
